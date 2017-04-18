@@ -47,6 +47,10 @@ arrange(表格,你想排序的变量)即可升序排列变量.`arrange(表格,de
 
 上面提到的`summarise`函数，是因为我打错了标点符号,所以运行出现错误.用mtcars_tbl的数据来举例，`summarise(mtcars_tbl, min = min(mpg), max = max(mpg), mean = mean(mpg))`意识是在该表格汇总,mpg的最小值、最大值、平均值是多少.
 
+*上课补充*  group_by(rs2015, major) %>% summarise(mean = mean(final),sd = sd(final), median = median(final), IQR = IQR(final))
+
+以major分组，算出每组的mean sd meidan IQR
+
 
 #### PDF的57页练习。
 
