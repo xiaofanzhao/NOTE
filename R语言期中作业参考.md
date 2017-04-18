@@ -1,0 +1,150 @@
+---
+title: "R语言期中作业"
+output: html_document
+---
+# 第一题:数据输入
+
+`prac01<- data.frame("ID" = c(1:5), "major"= c("英语", "法语", "社会工作", "应用心理学", "应用心理学"), "mid" = c(83, 88, 82, 89, 86), "final" = c(85, 84, 86, 88, 86), "total"= c(84, 86, 84, 88, 86), "Male" = c("TRUE", "TRUE", "FALSE", "FALSE", "TRUE"))`
+
+# 第二题:命令练习
+
+## (一)解释命令功能
+
+`seq(1, 20, by = 2)`   从1到20中,间隔为2.选出数来.
+
+`dnorm(-2, 10, 2)`   X=-2,均值等于10,标准差等于2的密度函数值
+
+`pnorm(-2, 10, 2)`   概率值
+
+`pnorm(2.5)-pnorm(2)` 概率值相减 求差
+
+`rnorm(10, 20, 5)`   随机成成默认十个值
+
+`qnorm(0.25, 10, 2`  分位数函数 quantile 
+
+`cbind(dataA, dataB)` 横向合成 **要求长度相同，长度不同如何处理？**
+
+`rbind(data, dataB)`  纵向合成
+
+`quantile(x, probs = c(0.1, 0.6, 0.9))`  求四分位数 
+
+`scale(x, center = T, scale = T)`  按列进行中心化 标准化  scale=FALSE时，表示对中。每个数减去平均数。
+
+`var(x)` 求样本方差
+
+`IQR(x)` 四分位间距 inter quartile range 
+
+five number summrary  五数综合
+
+`cor(x, y)` 做相关,cor.test(X,Y,method="")
+method可以为"spearman","pearson" and "kendall",分别对应三种相关系数的计算和检验。
+
+liner association correlation 
+
+cov 协方差
+
+choose(n, k) 算组合问题 组合数
+
+`options(digits = 5) ` 指定有效的数字位数
+
+`round(x) ` 将X四舍五入为指定位数
+
+`factorial(n)  `求阶乘
+
+choose(10, 6) * factorial(6)  A
+
+一个班级有10：50个人 每个班级中至少有两个人生日概率算出来 储存成一列 
+
+
+
+## (二)总结readxl 和haven包中常用文件导入函数
+
+readxl可以导入相关excel数据
+
+haven可以导入sas、spss、stata数据
+
+# 第三题
+
+读入命令：
+
+library(readxl)
+rs2015 <- read_excel("D:/RR/rs2015.xlsx")
+
+(1)
+
+library(dplyr)
+rs2015 <- mutate(rs2015, total = mid * 0.4 + final * 0.6)
+
+(2)
+
+rs2015 <- arrange(rs2015, desc(total))
+rs2015
+
+(3)
+
+方法一
+
+`answer3 <- within(rs2015,{
+ rank <- NA
+ rank[total >= 90] <- "A"
+ rank[total >= 80 & total < 90] <- "B"
+ rank[total >= 70 & total < 80] <- "C"
+ rank[total >= 60 & total < 70] <- "D"
+ rank[total <60] <- "F"})
+answer3`
+
+方法二
+
+`rs2015$rank[rs2015$total>= 90] = "A"
+rs2015$rank[rs2015$total>= 80 & rs2015$total < 90] = "B"
+rs2015$rank[rs2015$total>= 70 & rs2015$total < 80] = "C"
+rs2015$rank[rs2015$total>= 60 & rs2015$total < 70] = "D"
+rs2015$rank[rs2015$total < 60] = "F"`
+
+方法三
+
+cut函数
+
+`library(dplyr)
+mutate(rs2015,
+rank = cut(
+total, 
+breaks = c(0,60,70,80,90,100), 
+labels = c(LETTERS[c(6, 4:1)]),
+right = FALSE,
+ordered = T
+))
+rs2015`
+
+
+第四题
+
+`set.seed(5457)
+a = sample(nrow(rs2015), 5)
+newdata = rs2015[a,]`
+
+`sample_n(rs2015,5)`
+
+（5）
+
+PSYstudents <- filter(rs2015, major  == "PSY")
+
+(6)
+
+`answer6 <- within(rs2015,{
+ psy <- NA
+ psy[ rs2015$major == "PSY"] <- 1
+ psy[ rs2015$major == "SOC"] <- 0
+ psy[ rs2015$major == "DO"] <- 0
+ psy[ rs2015$major == "SW"] <- 0
+ })`
+
+`answer6 <- within(rs2015,{
+ psy <- NA
+ psy[ rs2015$major == "PSY"] <- 1
+ psy[ rs2015$major != "PSY"] <- 0
+ })`
+ 
+ 
+ rs2015$psy[rs2015$major == "PSY"]= 1
+ rs2015$psy[rs2015$major != "PSY"]= 0
