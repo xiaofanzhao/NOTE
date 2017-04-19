@@ -131,6 +131,8 @@ PSYstudents <- filter(rs2015, major  == "PSY")
 
 (6)
 
+方法一
+
 `answer6 <- within(rs2015,{
  psy <- NA
  psy[ rs2015$major == "PSY"] <- 1
@@ -139,12 +141,25 @@ PSYstudents <- filter(rs2015, major  == "PSY")
  psy[ rs2015$major == "SW"] <- 0
  })`
 
+方法二
+
 `answer6 <- within(rs2015,{
  psy <- NA
  psy[ rs2015$major == "PSY"] <- 1
  psy[ rs2015$major != "PSY"] <- 0
  })`
  
+ 方法三
  
- rs2015$psy[rs2015$major == "PSY"]= 1
- rs2015$psy[rs2015$major != "PSY"]= 0
+ `rs2015$psy[rs2015$major == "PSY"]= 1
+ rs2015$psy[rs2015$major != "PSY"]= 0`
+ 
+ 比较简单的方法
+ 
+ `library(dplyr)
+ rs2015<-mutate(rs2015,PSY = ifelse(major == "PSY", 1, 0))`
+ 
+前面这个PSY是新生成的变量，可以命名成别的名字。语句意思是，如果major=PSY，则输出1，否则，0
+
+dummies包中的dummy()函数可以把多分类变量转换成一系列虚拟变量，自行研究。
+ 
