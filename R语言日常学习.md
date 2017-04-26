@@ -117,6 +117,10 @@ reshape2包的使用暂且先到这里结束.总体感觉还不错,除了一天�
 ### 20170405 tidyr包的使用
 * gather函数的使用。gather函数相当于melt函数，将宽格式的数据转换成长格式的数据。`miao2 <- gather(miao, variable, value, -person)`也会出现melt函数一样的效果，如图二。函数里的-person是指不把person变成长数据.
 
+### 20170426 T检验
+
+
+
 
 
 
