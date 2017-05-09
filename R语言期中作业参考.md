@@ -162,4 +162,18 @@ PSYstudents <- filter(rs2015, major  == "PSY")
 前面这个PSY是新生成的变量，可以命名成别的名字。语句意思是，如果major=PSY，则输出1，否则，0
 
 dummies包中的dummy()函数可以把多分类变量转换成一系列虚拟变量，自行研究。
+
+### 奶牛问题
+
+**合并行数不同的列**
+
+id.T <- c(1:length(T0)) 生成序列号
+ 
+ merge(x,y,by="id",all.x = TRUE)
+ 
+ dplyr join 函数 
+ 
+ left_join(d1,d2,by=”id”)
+ 
+ full_join(d1,d2,by=”id”) 
  
