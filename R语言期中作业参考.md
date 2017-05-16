@@ -177,3 +177,10 @@ id.T <- c(1:length(T0)) 生成序列号
  
  full_join(d1,d2,by=”id”) 
  
+ **minor问题**有某些字段的赋值问题
+ library(tidyverse)
+library(dplyr)
+str_detect(x$id,"minor")
+x<-mutate(x,minor = as.numeric(str_detect(x$id,"minor")))
+table(x$minor)
+count(x,minor)
