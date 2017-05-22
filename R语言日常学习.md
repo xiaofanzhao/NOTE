@@ -177,9 +177,44 @@ subset函数
 
 
 
+### 20170522
 
+**合成表格**
 
+>记录日期暴露了自己中间没有学习R的本质，唉。
 
+我们可以把描述性统计量整合成一个表格
+```{r}
+stattable <- rbind(c("weight",mean(dataclass1$weight),sd(dataclass1$weight)),
+                   c("height",mean(dataclass1$height),sd(dataclass1$height)))
+library(knitr)
+kable(stattable, col.names = c("变量","均值","标准差"),caption = "Table 1", align = "c")
+
+```
+
+kable函数中caption参数定义的是表的名字. 该函数会自动统计pdf文件中有多少个表格,并默认在表名前面加上Table1,Table2.
+
+**画图**
+
+plot(x轴变量,y轴变量,main="图名",xlab="横轴名称",ylab="纵轴名称",pch = 点形状, cex = 缩放倍数, type = 线点类型)
+
+**线性回归**
+
+R中自带了lm函数可以用于线性回归.用法:lm(y变量~x1变量+x2变量+.... , data = 变量所在的数据集), 对lm回归后的对象(fit)使用summary可以得到线性回归的各个统计量
+
+>fit <- lm(weight ~ height, data = women)
+summary(fit)
+
+我们可以尝试加入height变量的平方项:
+
+>fit2 <- lm(weight ~ height + I(height^2), data=women)
+summary(fit2)
+
+获取结果
+
+我们可以用$引用符直接引用其中的参数如:
+
+fit$coefficients[2]
 
 
 
