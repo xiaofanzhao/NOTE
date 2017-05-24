@@ -217,6 +217,51 @@ summary(fit2)
 fit$coefficients[2]
 
 
+### 20170524 
 
+### jiebaR包
+
+
+`library(jiebaR)
+engine <- worker()
+words <- "想学R语言，那就赶紧拿起手机，打开微信，关注公众号《跟着菜鸟一起学R语言》"`
+
+`segment(words,engine)
+engine<=words
+`
+固定词
+
+`engine_new_word <- worker()
+new_user_word(engine_new_word, c("公众号","R语言"))
+segment(words,engine_new_word)`
+
+从文本中导入
+
+`enginer_user <- worker(user = `dictionary.txt`)
+segment(words,enginer_user)`
+
+删除停用词
+
+`engine_s <-worker(stop_word = "stopwords.txt")
+segment(words,engine_s)`
+
+统计词频
+
+`freq(segment(words,engine_s))`
+
+词性标注
+
+`qseg[words]
+
+qseg <= words
+
+tagger<- worker(type = "tag")
+tagger <= words
+
+提取关键字
+
+`type = keywords
+keys <- worker(type = "keywords", topn = 2)
+keys<= words`
 
 
