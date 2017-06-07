@@ -197,7 +197,7 @@ ip.location <- str_extract(PDSurveyBasic$ip, "(?<=\\().*(?=\\))") %>%
   as_tibble %>%
   transmute(province = .[[1]], city = .[[2]])
 clean.data <- select(PDSurveyBasic,-ip) %>%
-  cbind(ip.location) %>%`
+  cbind(ip.location) %>%` as_tibble`
   
   第一题
 
@@ -212,4 +212,4 @@ ZB<-summarise(PD1,min = min(PD1$time3),max = max(PD1$time3),mean = mean (PD1$tim
 plot(PD1$time3)
 hist(PD1$time3) # 频率直方图说明其分布
   
-  as_tibble`
+ 
