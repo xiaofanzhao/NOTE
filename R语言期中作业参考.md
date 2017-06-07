@@ -199,6 +199,17 @@ ip.location <- str_extract(PDSurveyBasic$ip, "(?<=\\().*(?=\\))") %>%
 clean.data <- select(PDSurveyBasic,-ip) %>%
   cbind(ip.location) %>%`
   
-  
+  第一题
+
+nrow(PD) = 697
+nrow(PD1) = 446
+
+问卷有效率 = 445/696 = 64%
+
+第二题
+
+ZB<-summarise(PD1,min = min(PD1$time3),max = max(PD1$time3),mean = mean (PD1$time3))
+plot(PD1$time3)
+hist(PD1$time3) # 频率直方图说明其分布
   
   as_tibble`
