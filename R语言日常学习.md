@@ -264,4 +264,31 @@ tagger <= words
 keys <- worker(type = "keywords", topn = 2)
 keys<= words`
 
+## 画图
+
+hist（a$b,) 频率分布直方图
+
+barplot(table(a$b) 条形图
+
+boxplot(y~x,data = )
+
+plot(x,y)  散点图
+
+yarrr::pirateplot(y~x, data = )  海盗图 
+
+*ggplot*
+
+ggplot(data)+geom_point(aes(x = , y = )
+
+
+ggplot(data)+geom_point(aes(x = , y = ,colour = )+stat_smooth(aes(x= , y = )+ facet_grid(group ~ .)
+
+加颜色+ 加线+加分组
+
+加颜色的时候 线条是colour 箱线图是fill 注意代码的转换
+
++ggthemems::theme_economist()  主题的改变
+
+ggplot2.tidyverse.org/reference
+
 
