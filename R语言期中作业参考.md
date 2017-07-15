@@ -32,7 +32,7 @@ output: html_document
 
 `qnorm(0.25, 10, 2`  分位数函数 quantile 
 
-`cbind(dataA, dataB)` 横向合成 **要求长度相同，长度不同如何处理？**
+`cbind(dataA, dataB)` 横向合成 
 
 `rbind(data, dataB)`  纵向合成
 
@@ -44,7 +44,7 @@ output: html_document
 
 `IQR(x)` 四分位间距 inter quartile range 
 
-five number summrary  五数综合
+`five number summrary`  五数综合
 
 `cor(x, y)` 做相关,cor.test(X,Y,method="")
 method可以为"spearman","pearson" and "kendall",分别对应三种相关系数的计算和检验。
@@ -164,7 +164,7 @@ dummies包中的dummy()函数可以把多分类变量转换成一系列虚拟变
 
     PD <- mutate(PDSurveyBasic,time3 = as.numeric(str_sub(PD$time2, end = -2)))
     PD <- mutate(PD,time3 = round(time3/60))
-或者：
+    或者：
     str_extract(PD$time2,"[:digit:]+") %>%as.character%>% as.numeric()
     PD1 <- subset(PD,time3 >= 10 & time3 <= 60 & relationship > 1 & student != 1)
  
