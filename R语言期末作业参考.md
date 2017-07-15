@@ -20,7 +20,15 @@ output: html_document
 
 ## (一)解释命令功能
 
-`seq(1, 20, by = 2)`   从1到20中,间隔为2.选出数来.
+`seq(1, 20, by = 2)`  从1到20中,间隔为2.选出数来.
+
+`LETTERS[1:5]`  产生字母序列A,B,C,D,E
+
+`letters[5:1]`  产生字母序列e,d,c,b,a
+
+`rep(LETTERS[1:3], each = 3)`  A,B,C三个字母每个重复三次
+
+`rep(LETTERS[1:3], by = 3)`  产生字母序列A、B、C
 
 `dnorm(-2, 10, 2)`   X=-2,均值等于10,标准差等于2的密度函数值
 
