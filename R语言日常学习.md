@@ -291,4 +291,54 @@ ggplot(data)+geom_point(aes(x = , y = ,colour = )+stat_smooth(aes(x= , y = )+ fa
 
 ggplot2.tidyverse.org/reference
 
+### 奶牛问题
+
+**合并行数不同的列**
+
+id.T <- c(1:length(T0)) 生成序列号
+ 
+ merge(x,y,by="id",all.x = TRUE)
+ 
+ dplyr join 函数 
+ 
+ left_join(d1,d2,by=”id”)
+ 
+ full_join(d1,d2,by=”id”) 
+ 
+ **minor问题**有某些字段的赋值问题
+ library(tidyverse)
+library(dplyr)
+str_detect(x$id,"minor")
+x<-mutate(x,minor = as.numeric(str_detect(x$id,"minor")))
+table(x$minor)
+count(x,minor)
+
+
+### 医患数据提取字符问题
+
+`library(readxl)
+library(stringr)
+library(tidyverse)
+PDSurveyBasic <- read_excel("PDSurveyBasic.xlsx")
+ip.location <- str_extract(PDSurveyBasic$ip, "(?<=\\().*(?=\\))") %>%
+  str_split("-", n = 2, simplify = TRUE) %>%
+  as_tibble %>%
+  transmute(province = .[[1]], city = .[[2]])
+clean.data <- select(PDSurveyBasic,-ip) %>%
+  cbind(ip.location) %>%` as_tibble`
+  
+  第一题
+
+nrow(PD) = 697
+nrow(PD1) = 446
+
+问卷有效率 = 445/696 = 64%
+
+第二题
+
+ZB<-summarise(PD1,min = min(PD1$time3),max = max(PD1$time3),mean = mean (PD1$time3))
+plot(PD1$time3)
+hist(PD1$time3) # 频率直方图说明其分布
+  
+ 
 
