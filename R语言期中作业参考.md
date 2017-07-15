@@ -196,88 +196,38 @@ dummies包中的dummy()函数可以把多分类变量转换成一系列虚拟变
 
 ## 第一小题
 
-    group_by(rs2015, major) %>% 
-    summarise(mean = mean(final),sd = sd(final), median = median(final), IQR = IQR(final))
+    group_by(rs2015, major) %>% 
+    summarise(mean = mean(final),sd = sd(final), median = median(final), IQR = IQR(final))
 
 ## 第二小题
 
 （1）
 
-    testscore <- data.frame( "in" = c(2.0, 2.3, 1.1, -2.0, -1.9, 5.6, 2.6, 1.1, 5.6, 8.2), 
-                             "out" = c(1.6, 3.1, -2.8, 0.0, 0.2, 2.9, -0.9, 3.8, 0.7, -0.1))
+    `testscore <- data.frame( "in" = c(2.0, 2.3, 1.1, -2.0, -1.9, 5.6, 2.6, 1.1, 5.6, 8.2), 
+                             "out" = c(1.6, 3.1, -2.8, 0.0, 0.2, 2.9, -0.9, 3.8, 0.7, -0.1))`
  
 （2）
 
-    t.test(testscore$in., testscore$out, alternative = "two.sided", conf.level = 0.98)
+   `t.test(testscore$in., testscore$out, alternative = "two.sided", conf.level = 0.98)`
 
 （3）
 
-    t.test(testscore$in., testscore$out, alternative = "more", conf.level = 0.95)
+   `t.test(testscore$in., testscore$out, alternative = "more", conf.level = 0.95)`
 
 （4）
 
-    t.test(testscore$in., testscore$out, alternative = "more", conf.level = 0.95)
+    `t.test(testscore$in., testscore$out, alternative = "more", conf.level = 0.95)`
 
 # 第五题
 
-    library(readxl)
-    library(dplyr)
-    library(sampling)
-    RL <- read_excel("ReadingList.xlsx")
-    x1 <- strata(RL, c("student"), size = c(rep(1, 10)), method = "srswor")  # 分层抽样的命令 strata(你的数据，分层依据的变量名称，各层中要抽的样本数，抽样方法)
-    RL1 <- getdata(RL, x1)[, c("title", "student")]  # 选出你要的列
-    x2 <- RL[!(RL$title %in% (RL1$title)),]  # 丢出去选过的
-    x3 <- strata(x2, c("student"), size = c(rep(1, 10)), method = "srswor")  # 再选一回
-    RL2 <- getdata(x2, x3)[, c("title", "student")]  # 得到结果
+    library(readxl)
+    library(dplyr)
+    library(sampling)
+    RL <- read_excel("ReadingList.xlsx")
+    x1 <- strata(RL, c("student"), size = c(rep(1, 10)), method = "srswor")  # 分层抽样的命令 strata(你的数据，分层依据的变量名称，各层中要抽的样本数，抽样方法)
+    RL1 <- getdata(RL, x1)[, c("title", "student")]  # 选出你要的列
+    x2 <- RL[!(RL$title %in% (RL1$title)),]  # 丢出去选过的
+    x3 <- strata(x2, c("student"), size = c(rep(1, 10)), method = "srswor")  # 再选一回
+    RL2 <- getdata(x2, x3)[, c("title", "student")]  # 得到结果
 
 
-### 奶牛问题
-
-**合并行数不同的列**
-
-id.T <- c(1:length(T0)) 生成序列号
- 
- merge(x,y,by="id",all.x = TRUE)
- 
- dplyr join 函数 
- 
- left_join(d1,d2,by=”id”)
- 
- full_join(d1,d2,by=”id”) 
- 
- **minor问题**有某些字段的赋值问题
- library(tidyverse)
-library(dplyr)
-str_detect(x$id,"minor")
-x<-mutate(x,minor = as.numeric(str_detect(x$id,"minor")))
-table(x$minor)
-count(x,minor)
-
-
-### 医患数据提取字符问题
-
-`library(readxl)
-library(stringr)
-library(tidyverse)
-PDSurveyBasic <- read_excel("PDSurveyBasic.xlsx")
-ip.location <- str_extract(PDSurveyBasic$ip, "(?<=\\().*(?=\\))") %>%
-  str_split("-", n = 2, simplify = TRUE) %>%
-  as_tibble %>%
-  transmute(province = .[[1]], city = .[[2]])
-clean.data <- select(PDSurveyBasic,-ip) %>%
-  cbind(ip.location) %>%` as_tibble`
-  
-  第一题
-
-nrow(PD) = 697
-nrow(PD1) = 446
-
-问卷有效率 = 445/696 = 64%
-
-第二题
-
-ZB<-summarise(PD1,min = min(PD1$time3),max = max(PD1$time3),mean = mean (PD1$time3))
-plot(PD1$time3)
-hist(PD1$time3) # 频率直方图说明其分布
-  
- 
