@@ -347,6 +347,8 @@ library(ggplot2)
 
 library(Rmisc)
 
+h<-summarySE(lowplot, measurevar = "Y2", groupvars = c("X2","X3","risky"))
+
 h$X2 <-factor(h$X2)
 
 h$X3 <-factor(h$X3)
