@@ -341,4 +341,17 @@ plot(PD1$time3)
 hist(PD1$time3) # 频率直方图说明其分布
   
  
+## 画均值误差图
 
+library(ggplot2)
+
+library(Rmisc)
+
+h$X2 <-factor(h$X2)
+
+h$X3 <-factor(h$X3)
+
+ggplot(h,aes(x = X2, y = Y1,fill = X3))+
+geom_bar(position = position_dodge(),stat = "identity") + 
+geom_errorbar(aes(ymin = Y1-se, ymax = Y1+se),
+              width = .2,position = position_dodge(.9))
