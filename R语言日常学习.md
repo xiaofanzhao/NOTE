@@ -13,11 +13,47 @@
 2. 里面内容均为个人后续理解，可能有不对的地方，各种求共同学习。
 3. 该文档主要为了加深记忆以及方便复习，毕竟我只有七秒钟记忆。
 
+
+
 **目录**
 
 - [dplyr包](###20170330)
 - [reshape包](###20170404)
 - [T检验](###20170504)
+- [apply一族](###20171113)
+
+### 20171113
+
+今天主要记录一下apply包的用法
+
+1.apply函数
+
+对于一个组按照行或者列进行运算，apply(x,1,sum)
+
+2.tapply函数
+
+进行分组统计，例如tapply(x,index = group,fun = mean); tapply(sale,list(year,province),mean);tapply(1:17, fac, sum, simplify = FALSE)
+
+simplify是一个逻辑值，如果是true的话返回一个数组，如果是false，返回一个list。
+
+3.table
+
+函数table 可以求因子出现的频数，table（x）；table(d, exclude="B")
+
+也可以使用exclude函数排除
+
+4.mapply
+函数mapply是函数sapply的变形版，mapply 将函数 FUN 依次应用每一个参数的第一个元素、第二个元素、第三个元素上。函数mapply的使用格式如下：
+
+mapply(FUN, ..., MoreArgs = NULL, SIMPLIFY = TRUE,USE.NAMES = TRUE)
+
+
+其中参数MoreArgs表示函数FUN的参数列表。
+
+示例代码：
+> mapply(rep, times=1:4, x=4:1)
+
+
 
 
 ### 20170330 
