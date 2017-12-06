@@ -24,6 +24,6 @@ fit那一行运行时提示：sample covariance matrix is not positive-definite
 
 [查询到的相关解决方案](https://stats.stackexchange.com/questions/134348/when-a-cfa-model-has-a-covariance-matrix-was-not-positive-definite-problem-is)
 
-### 我的疑惑
+### 我的理解和疑惑
 
-不会判断解决方案里的建议如何去验证，到底怎么解决==。所以暂时也没有解决得了这个问题。
+我的理解是可能数据不符合，或者说相关系数之类的有问题，但是我自己也不太清楚。也没有特别懂解决方案里的建议是什么原理，什么意思，如何去验证，怎么解决。
