@@ -27,10 +27,15 @@
 代码如下
 
 `model<-'visual=~x1+x2+x3  ## 潜变量=~观测变量1+观测变量2+观测变量3
+        
         textual=~x4+x5+x6
+        
         speed=~x7+x8+x9'
+
 fit <- cfa(model, data = HolzingerSwineford1939)
+
 summary(fit,fit.measures=TRUE)
+
 fitmeasures(fit,""XX) ## 选出来特定的指标`
 
 ### 20171126
