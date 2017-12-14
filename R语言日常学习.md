@@ -20,6 +20,19 @@
 - [T检验](###20170504)
 - [apply一族](###20171113)
 
+### 20171214
+
+如何用R语言做验证性因子分析
+
+代码如下
+
+model<-'visual=~x1+x2+x3  ## 潜变量=~观测变量1+观测变量2+观测变量3
+        textual=~x4+x5+x6
+        speed=~x7+x8+x9'
+fit <- cfa(model, data = HolzingerSwineford1939)
+summary(fit,fit.measures=TRUE)
+fitmeasures(fit,""XX) ## 选出来特定的指标
+
 ### 20171126
 
 如何提取位置索引
